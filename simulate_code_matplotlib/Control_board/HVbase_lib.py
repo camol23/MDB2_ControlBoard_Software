@@ -25,6 +25,7 @@ class HV513():
         self.BL = 4                 # Blank val         (0: Set Low HV - [~BL NAND Latch_Output] )
         self.POL = 5                # Polarity val      (1: exact in and out val - [~POL XOR Latch_Output])
         self.HI_Z = 6               # High Impedance    (0: Set high Z in the OUput)
+        self.SHORT = 7              # Shor-Circuit Input pin
 
         self.CLK = 1                # Clock signal      (rise-up to shift data input)
         self.LE = 2                 # Latch enable      (1: Load D_in to D_out)
@@ -161,9 +162,20 @@ class HV513():
         # GPIO.setup(self.POL, GPIO.OUT)
         # GPIO.setup(self.HI_Z, GPIO.OUT)
 
+        # self.setup_short_interrupt()
+
         # self.deactivate()
 
+    def setup_short_interrupt(self):
+        pass
+        # GPIO.setup(self.SHORT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        # GPIO.add_event_detect(self.SHORT, GPIO.RISING, callback=self.callback_short, bouncetime=100)
 
+    def callback_short(self):
+        pass
+        # self.set_GPIO(self.BL, GPIO.LOW)
+        # self.set_GPIO(self.POL, GPIO.HIGH)
+        # self.set_GPIO(self.HI_Z, GPIO.HIGH)
 
     def set_GPIO(self, pin, val):
         
